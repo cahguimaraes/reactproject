@@ -6,8 +6,7 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink,  
-    NavbarText
+    NavLink
   } from 'reactstrap';
   
 
@@ -18,17 +17,11 @@ import {
   
     return (
       <div>
-        <Navbar color="danger" dark expand="md">
+        <Navbar color="dark" dark expand="md">
           <NavbarBrand href="/">Carou</NavbarBrand>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
-            <Nav className="mr-auto" navbar>
-              <NavItem>
-                <NavLink href="https://github.com/cahguimaraes/NodeProject">Github API</NavLink>
-              </NavItem>   
-              <NavItem>
-                <NavLink href="https://github.com/cahguimaraes/reactproject">Github React</NavLink>
-              </NavItem>  
+            <Nav className="mr-auto" navbar>              
               <NavItem>
                 <NavLink href="">Carrinho</NavLink>
               </NavItem>        

@@ -1,9 +1,16 @@
 import React from 'react';
+import { Container, Button } from 'reactstrap';
 
 class Footer extends React.Component{
     render(){
         return (
-        <h1>Rodapé</h1>
+            <Container>
+                <br></br>
+                <br></br>
+                <p>Para baixar o projeto da API em Node no GitHub  <a href="https://github.com/cahguimaraes/reactproject"> Clique Aqui </a> 
+                ou o projeto React <a href="https://github.com/cahguimaraes/reactproject">Clique Aqui</a></p>
+                <p>By: Caroline Guimarães :)</p>
+            </Container>
         );
     }
 }
