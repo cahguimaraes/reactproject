@@ -1,70 +1,49 @@
-import React from 'react';
-import { Container, Row, Col, Card, CardImg, CardText, CardBody,CardTitle, CardSubtitle, Button,Jumbotron } from 'reactstrap';
+import {React, Component} from 'react';
+import {Container, Button, Jumbotron } from 'reactstrap';
+import api_product from './api_product';
 
-  const Body = (props) => {
-    return (       
+class Body extends Component {
+    state = {product: [],}
+      
+    async componentDidMount() {
+        const response = await api_product.get('');
+      
+        this.setState({ product: response.data });
+      }  
+
+      render() {   
+        const { product } = this.state; 
+       
+        
+    return (
       <Container>
-      <Jumbotron>
-        <h1 className="display-3">Hello, world!</h1>
-        <p className="lead">This is a simple hero unit, a simple Jumbotron-style component for calling extra attention to featured content or information.</p>
-        <hr className="my-2" />
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <p className="lead">
-          <Button color="primary">Learn More</Button>
+         <Jumbotron>
+         
+         <h1 className="display-3">Bem-Vindo</h1>
+         <p className="lead">Esse é um pequeno esboço de um projeto de API em Node e o Front em React</p>
+         <hr className="my-2" />
+         <p> Considerar que todo o projeto foi feito em menos de uma semana por uma aluna que recém terminou o curso de Node e sequer iniciou o de React </p>
+         <p className="lead">
+          <Button color="primary">+ Justificativas</Button>
         </p>
-      </Jumbotron>
-      <Row>
-         <Col>
-         <Card>
-            <CardImg top width="100%" src="/assets/318x180.svg" alt="Card image cap" />
-            <CardBody>
-               <CardTitle tag="h5">Card title</CardTitle>
-               <CardSubtitle t
-                  ag="h6" className="mb-2 text-muted">Card subtitle</CardSubtitle>
-               <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-               <Button color="info">Comprar</Button>
-            </CardBody>
-         </Card>
-         </Col>
-         <Col>
-         <Card>
-            <CardImg top width="100%" src="/assets/318x180.svg" alt="Card image cap" />
-            <CardBody>
-               <CardTitle tag="h5">Card title</CardTitle>
-               <CardSubtitle t
-                  ag="h6" className="mb-2 text-muted">Card subtitle</CardSubtitle>
-               <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-               <Button color="info">Comprar</Button>
-            </CardBody>
-         </Card>
-         </Col>
-         <Col>
-         <Card>
-            <CardImg top width="100%" src="/assets/318x180.svg" alt="Card image cap" />
-            <CardBody>
-               <CardTitle tag="h5">Card title</CardTitle>
-               <CardSubtitle t
-                  ag="h6" className="mb-2 text-muted">Card subtitle</CardSubtitle>
-               <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-               <Button color="info">Comprar</Button>
-            </CardBody>
-         </Card>
-         </Col>
-         <Col>
-         <Card>
-            <CardImg top width="100%" src="/assets/318x180.svg" alt="Card image cap" />
-            <CardBody>
-               <CardTitle tag="h5">Card title</CardTitle>
-               <CardSubtitle t
-                  ag="h6" className="mb-2 text-muted">Card subtitle</CardSubtitle>
-               <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-               <Button color="info">Comprar</Button>
-            </CardBody>
-         </Card>
-         </Col>
-      </Row>
+         </Jumbotron>
+      
+      <div className="row">   
+      {product.map(product => (       
+         <div className="col-sm" key={product._id}>          
+            <div className="card">
+               <img key={product._id} src={product.image} alt={product.name} />
+               <div className="card-body">
+                  <h5 className="card-title">{product.name}</h5>
+                  <p className="card-text"><strong>R$</strong> {product.price}</p>
+                  <a href="#" className="btn btn-primary">Comprar</a>
+               </div>
+            </div>
+         </div> 
+     ))}
+     </div>
    </Container>
     );
   };
-
+};
 export default Body;
